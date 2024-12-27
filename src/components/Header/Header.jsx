@@ -1,4 +1,4 @@
-import { NavLink, useLocation, Link } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import styles from './Header.module.css';
 
 function Header() {
@@ -6,12 +6,13 @@ function Header() {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.logo}>
-        <a href="/">
-          <span className={styles.logospan}>psychologists.</span>services
-        </a>
-      </h1>
-
+      <a href="/" className={styles.logo}>
+        <img
+          src="/images/TravelTrucks.svg" // Абсолютный путь к логотипу
+          alt="TravelTrucks Logo"
+          className={styles.logoImage}
+        />
+      </a>
       <nav className={styles.nav}>
         <ul className={styles.ulclass}>
           <li className={styles.link_li}>
@@ -31,19 +32,11 @@ function Header() {
                 location.pathname === '/catalog' ? styles.active : ''
               }`}
             >
-              Psychologists
+              Catalog
             </NavLink>
           </li>
         </ul>
       </nav>
-      <div className={styles.userAuth}>
-        <Link to="/signin" className={styles.linkAuth}>
-          <p className={styles.signup}>Log In</p>
-        </Link>
-        <Link to="/signup" className={styles.linkAuth}>
-          <p className={styles.registration}>Registration</p>
-        </Link>
-      </div>
     </header>
   );
 }
