@@ -17,23 +17,27 @@
 }
 
 .loadMoreButton {
-  display: block; /* Преобразуем кнопку в блок */
-  width: 100%;
   max-width: 145px;
   font-size: 16px;
   font-weight: 500;
+  line-height: 24px;
   border: 1px solid rgba(218, 221, 225, 1);
   border-radius: 200px;
-  padding: 10px 20px;
-  color: rgba(16, 24, 40, 1);
+  padding: 16px 32px;
+  color: #101828;
   cursor: pointer;
-  font-weight: 600;
   margin: 0 auto;
   margin-top: 40px;
-  box-sizing: border-box; /* Включаем padding и border в размер */
+  margin-bottom: 52px;
+  background: none;
 }
 
-.loadMoreButton:hover {
+.loadMoreButton:hover,
+.loadMoreButton:focus,
+.loadMoreButton:active {
+  padding: 16px 32px;
+  margin-top: 40px;
+  margin-bottom: 52px;
   border-color: rgba(216, 67, 67, 1);
 }
 

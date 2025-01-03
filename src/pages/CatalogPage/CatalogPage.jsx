@@ -22,42 +22,46 @@ function CatalogPage() {
     city: '',
   });
   const [page, setPage] = useState(1);
+  const [displayedCampers, setDisplayedCampers] = useState(4);
 
   useEffect(() => {
     dispatch(fetchCampers({ filters, page }));
-  }, [dispatch, filters, page]); // Добавлены все зависимости
+  }, [dispatch, filters, page]); // Add all dependencies
 
   const loadMore = () => {
-    setPage(prevPage => prevPage + 1);
+    setDisplayedCampers(prevDisplayedCampers => prevDisplayedCampers + 4);
   };
 
   const handleApplyFilters = newFilters => {
     setFilters(newFilters);
     setPage(1);
+    setDisplayedCampers(4);
   };
 
-  const filteredCampers = list.filter(camper => {
-    return (
-      (!filters.ac || camper.AC === filters.ac) &&
-      (!filters.tv || camper.TV === filters.tv) &&
-      (!filters.bathroom || camper.bathroom === filters.bathroom) &&
-      (!filters.kitchen || camper.kitchen === filters.kitchen) &&
-      (!filters.automatic || camper.transmission === 'automatic') &&
-      (!filters.van || camper.form === 'van') &&
-      (!filters.fullyIntegrated || camper.form === 'fullyIntegrated') &&
-      (!filters.alcove || camper.form === 'alcove') &&
-      (filters.city === '' || camper.location.includes(filters.city))
-    );
-  });
+  const filteredCampers = list
+    .filter(camper => {
+      return (
+        (!filters.ac || camper.AC === filters.ac) &&
+        (!filters.tv || camper.TV === filters.tv) &&
+        (!filters.bathroom || camper.bathroom === filters.bathroom) &&
+        (!filters.kitchen || camper.kitchen === filters.kitchen) &&
+        (!filters.automatic || camper.transmission === 'automatic') &&
+        (!filters.van || camper.form === 'van') &&
+        (!filters.fullyIntegrated || camper.form === 'fullyIntegrated') &&
+        (!filters.alcove || camper.form === 'alcove') &&
+        (filters.city === '' || camper.location.includes(filters.city))
+      );
+    })
+    .slice(0, displayedCampers);
 
   useEffect(() => {
     if (page > 1) {
       dispatch(fetchCampers({ filters, page }));
     }
-  }, [dispatch, filters, page]); // Добавлены все зависимости
+  }, [dispatch, filters, page]); // Add all dependencies
 
-  if (loading) return <p>Загрузка...</p>;
-  if (error) return <p>Ошибка: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
@@ -74,11 +78,12 @@ function CatalogPage() {
               <p>Нет результатов по выбранным фильтрам</p>
             )}
           </div>
-          {filteredCampers.length > 0 && (
-            <button onClick={loadMore} className={styles.loadMoreButton}>
-              Load More
-            </button>
-          )}
+          {filteredCampers.length > 0 &&
+            filteredCampers.length === displayedCampers && (
+              <button onClick={loadMore} className={styles.loadMoreButton}>
+                Load More
+              </button>
+            )}
         </div>
       </div>
     </div>

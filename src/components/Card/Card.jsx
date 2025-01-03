@@ -6,17 +6,19 @@ import {
 } from '../../redux/favoritesSlice';
 import styles from './Card.module.css';
 
+const truncateText = (text, maxLength) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength) + '...';
+};
+
 const Card = ({ camper }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Достаем список избранных кемперов из Redux
   const favorites = useSelector(state => state.favorites.list);
 
-  // Проверяем, находится ли кемпер в избранных
   const isFavorite = favorites.some(fav => fav.id === camper.id);
 
-  // Извлекаем данные с проверками
   const {
     id,
     name,
@@ -52,7 +54,7 @@ const Card = ({ camper }) => {
         <div className={styles.header}>
           <h3 className={styles.name}>{name}</h3>
           <div className={styles.priceContainer}>
-            <p className={styles.price}>{price.toFixed(2)} EUR</p>
+            <p className={styles.price}>€{price.toFixed(2)}</p>
             <img
               src={
                 isFavorite ? '/images/Heart-filled.svg' : '/images/Heart.svg'
@@ -65,7 +67,6 @@ const Card = ({ camper }) => {
             />
           </div>
         </div>
-
         <div className={styles.ratingContainer}>
           <img
             src="/images/Rating.svg"
@@ -80,8 +81,7 @@ const Card = ({ camper }) => {
           />
           <span className={styles.city}>{location}</span>
         </div>
-
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{truncateText(description, 100)}</p>
         <div className={styles.filterSlots}>
           {transmission === 'automatic' && (
             <div className={styles.filterSlot}>
@@ -126,7 +126,6 @@ const Card = ({ camper }) => {
             </div>
           )}
         </div>
-
         <button
           onClick={() => navigate(`/catalog/${id}`)}
           className={styles.button}

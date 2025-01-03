@@ -16,13 +16,11 @@ function Filters({ onApplyFilters }) {
     alcove: false,
   });
 
-  // Обработчик для изменения состояния Vehicle Equipment
   const handleFeatureChange = e => {
     const { name, checked } = e.target;
     setFeatures(prev => ({ ...prev, [name]: checked }));
   };
 
-  // Обработчик для изменения состояния Vehicle Type
   const handleVehicleTypeChange = e => {
     const { name, checked } = e.target;
     setVehicleType(prev => ({ ...prev, [name]: checked }));
@@ -91,6 +89,7 @@ function Filters({ onApplyFilters }) {
       <div className={`${styles.filterSection} ${styles.equipmentSection}`}>
         <h2 className={styles.subtitleh2}>Filters</h2>
         <label className={styles.subtitle}>Vehicle Equipment</label>
+        <div className={styles.line}></div> {/* Добавление линии */}
         <div className={styles.slotContainer}>
           {Object.keys(features).map(feature => (
             <label
@@ -117,6 +116,7 @@ function Filters({ onApplyFilters }) {
 
       <div className={styles.filterSection}>
         <label className={styles.subtitle}>Vehicle Type</label>
+        <div className={styles.line}></div> {/* Добавление линии */}
         <div className={styles.slotContainer}>
           {Object.keys(vehicleType).map(type => (
             <label

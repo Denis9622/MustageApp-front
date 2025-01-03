@@ -1,4 +1,5 @@
 /* CSS для Filters */
+
 .filtersContainer {
   width: 360px;
   margin-left: 64px;
@@ -6,6 +7,11 @@
   /* padding: 0px 0px 0 64px; */
   margin-top: 0; /* Убираем отступ сверху для выравнивания с логотипом */
   border-radius: 8px;
+}
+
+.line {
+  border-bottom: 1px solid rgba(218, 221, 225, 1);
+  margin-top: 24px;
 }
 
 .subtitle {
@@ -55,6 +61,7 @@
   font-weight: 400;
   box-sizing: border-box;
   background-color: #f7f7f7;
+  
 }
 
 .input::placeholder {
@@ -63,6 +70,7 @@
 
 .filterSection {
   margin-bottom: 40px;
+  
 }
 
 .slotContainer {
@@ -70,7 +78,8 @@
   flex-wrap: wrap;
   width: 100%;
   gap: 12px;
-  margin-top: 48px;
+  margin-top: 24px;
+  
 }
 
 .slot {
@@ -144,9 +153,15 @@
   box-sizing: border-box; /* Новый стиль */
 }
 
-.applyButton:hover {
+
+
+.applyButton:hover,
+.applyButton:focus,
+.applyButton:active {
+  padding: 16px;
   background-color: #4d0707;
 }
+
 
 .applyButton:focus {
   outline: none; /* Убираем стандартный обвод фокуса */
