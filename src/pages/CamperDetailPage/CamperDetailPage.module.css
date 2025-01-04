@@ -163,6 +163,7 @@
   width: 631px;
   padding: 44px 52px;
   background-color: rgba(247, 247, 247, 1);
+  border-radius: 10px;
 }
 
 .reviews {
@@ -183,7 +184,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .filterSlot {
@@ -234,6 +235,7 @@
 
 .leftContent {
   display: flex;
+  
 }
 
 .detailItem {
@@ -244,13 +246,13 @@
 
 .detailLabel {
   font-weight: bold; /* По желанию: выделите лейбл жирным шрифтом */
-  text-decoration: none !important; /* Уберите подчеркивание */
-  border: none !important; /* Убедитесь, что нет рамки */
-  background: none !important; /* Убедитесь, что нет фонового подчеркивания */
+  text-decoration: none; 
+  border: none;  
+  background: none; 
 }
 
 .detailValue {
-  text-decoration: none !important; /* Уберите подчеркивание */
-  border: none !important; /* Убедитесь, что нет рамки */
-  background: none !important; /* Убедитесь, что нет фонового подчеркивания */
+  text-decoration: none; 
+  border: none;  
+  background: none; 
 }

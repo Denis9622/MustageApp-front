@@ -3,57 +3,29 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border: 1px solid #dadde1;
   width: 600px;
   max-width: 100%;
-  padding: 64px;
+  padding: 44px 57px;
   background-color: #fff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  border-radius: 30px;
+  border-radius: 10px;
+  margin-left: 40px;
 }
 
-.h2class {
-  font-weight: 500;
-  font-size: 40px;
-  line-height: 48px;
-  letter-spacing: -0.02em;
-  margin-bottom: 20px;
-  text-align: left;
-  color: #191a15;
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 8px;
+  color: #101828;
 }
 
 .textclass {
-  color: rgba(25, 26, 21, 0.5);
-  text-align: left;
-  margin-bottom: 40px;
-}
-
-.psychologistInfo {
-  display: flex;
-  align-items: center;
-  margin-bottom: 40px;
-  text-align: left;
-}
-
-.avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  margin-right: 14px;
-}
-
-.psychologistLabel {
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(138, 138, 137, 1);
-  line-height: 16px;
-  margin-bottom: 4px;
-}
-
-.psychologistName {
-  font-weight: 500;
+  color: #6c717b;
+  font-weight: 400;
   font-size: 16px;
-  color: #191a15;
-  margin: 0;
+  line-height: 24px;
+  margin-bottom: 24px;
 }
 
 .form {
@@ -62,29 +34,22 @@
   width: 100%;
 }
 
-.flexRow {
-  display: flex;
-}
-
 .input {
   width: 100%;
-  padding: 16px;
-  border: 1px solid rgba(25, 26, 21, 0.1);
+  padding: 18px;
+  border: none;
   border-radius: 12px;
   font-size: 16px;
-  color: #191a15;
-  background-color: #fff;
+  color: #6c717b;
+  background-color: #f7f7f7;
   appearance: none;
+  resize: none;
 }
 
 .input:focus {
   outline: none;
   border-color: #3470ff;
   box-shadow: 0 0 4px rgba(52, 112, 255, 0.5);
-}
-
-.input option {
-  color: #555;
 }
 
 .error {
@@ -96,50 +61,17 @@
 .formGroup {
   display: flex;
   flex-direction: column;
-  margin-bottom: 16px;
-}
-
-.selectWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.selectInput {
-  width: 100%;
-  padding: 16px;
-  border: 1px solid rgba(25, 26, 21, 0.1);
-  border-radius: 12px;
-  font-size: 16px;
-  color: #191a15;
-  background-color: #fff;
-  appearance: none;
-  cursor: pointer;
-}
-
-.selectInput:focus {
-  outline: none;
-  border-color: #3470ff;
-  box-shadow: 0 0 4px rgba(52, 112, 255, 0.5);
-}
-
-.clockIcon {
-  position: absolute;
-  left: 16px;
-  width: 20px;
-  height: 20px;
-}
-
-.selectInputWithIcon {
-  padding-left: 48px;
+  margin-bottom: 14px;
 }
 
 .submitButton {
-  padding: 16px;
+  margin-top: 14px;
+  margin: 0 auto;
+  padding: 16px 63px;
   font-size: 16px;
   font-weight: 500;
   color: #fff;
-  background-color: #3470ff;
+  background-color: #e44848;
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -149,7 +81,10 @@
 .submitButton:hover,
 .submitButton:focus,
 .submitButton:active {
-  padding: 16px;
-  background-color: #255EE8;
+  margin-top: 14px;
+  margin: 0 auto;
+  width: 166px;
+  padding: 16px 63px;
+  background-color: #d84343;
   transform: scale(0.98);
 }
