@@ -1,3 +1,4 @@
+// CamperDetailPage.js
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -5,6 +6,7 @@ import styles from './CamperDetailPage.module.css';
 import { fetchCamperDetails } from '../../redux/vehiclesSlice';
 import Loader from '../../components/Loader/Loader';
 import Header from '../../components/Header/Header';
+import BookingForm from '../../components/BookingForm/BookingForm'; // Импортируем новый компонент
 
 function CamperDetailPage() {
   const { id } = useParams();
@@ -21,101 +23,63 @@ function CamperDetailPage() {
   }, [dispatch, id]);
 
   if (loading) return <Loader />;
-  if (error) return <div>Error: {error}</div>;
-  if (!camper) return <div>Camper not found</div>;
+  if (error) return <div className={styles.error}>Error: {error}</div>;
+  if (!camper) return <div className={styles.notFound}>Camper not found</div>;
 
   const {
-    name,
-    price = 0,
-    description = '',
-    rating = 0,
-    location = '',
+    name = 'Mavericks',
+    price = 8000,
+    description,
+    rating = 4.8,
+    location = "L'viv, Ukraine",
     gallery = [],
     transmission,
     engine,
     kitchen,
     AC,
+    reviews = [],
+    form = 'Panel truck',
+    length = '5.4 m',
+    width = '2.01 m',
+    height = '2.72 m',
+    tank = '120 L',
+    consumption = '12.4 L/100km',
   } = camper;
 
+  console.log('Camper details:', camper);
+
   const renderFeatures = () => (
-    <div className={styles.vehiclecontainer}>
-      {/* Filter Slots */}
+    <div className={styles.vehicleContainer}>
       <div className={styles.filterSlots}>
         {transmission === 'automatic' && (
-          <div className={styles.filterSlot}>
-            <img
-              src="/images/Automatic.svg"
-              alt="Automatic"
-              className={styles.filterIcon}
-            />
-            <span className={styles.filterLabel}>Automatic</span>
-          </div>
+          <Feature icon="/images/Automatic.svg" label="Automatic" />
         )}
         {engine && (
-          <div className={styles.filterSlot}>
-            <img
-              src="/images/petrol.svg"
-              alt={engine}
-              className={styles.filterIcon}
-            />
-            <span className={styles.filterLabel}>
-              {engine.charAt(0).toUpperCase() + engine.slice(1)}
-            </span>
-          </div>
+          <Feature
+            icon="/images/petrol.svg"
+            label={engine.charAt(0).toUpperCase() + engine.slice(1)}
+          />
         )}
-        {kitchen && (
-          <div className={styles.filterSlot}>
-            <img
-              src="/images/Kitchen.svg"
-              alt="Kitchen"
-              className={styles.filterIcon}
-            />
-            <span className={styles.filterLabel}>Kitchen</span>
-          </div>
-        )}
-        {AC && (
-          <div className={styles.filterSlot}>
-            <img src="/images/AC.svg" alt="AC" className={styles.filterIcon} />
-            <span className={styles.filterLabel}>AC</span>
-          </div>
-        )}
+        {kitchen && <Feature icon="/images/Kitchen.svg" label="Kitchen" />}
+        {AC && <Feature icon="/images/AC.svg" label="AC" />}
       </div>
       <h3 className={styles.subheading}>Vehicle Details</h3>
+      <div className={styles.line}></div> {/* Добавление линии */}
       <ul className={styles.detailsList}>
-        <li>
-          <span>Form:</span>
-          <span>{camper.form || 'Unknown'}</span>
-        </li>
-        <li>
-          <span>Length:</span>
-          <span>{camper.length ? `${camper.length} cm` : 'N/A'}</span>
-        </li>
-        <li>
-          <span>Width:</span>
-          <span>{camper.width ? `${camper.width} cm` : 'N/A'}</span>
-        </li>
-        <li>
-          <span>Height:</span>
-          <span>{camper.height ? `${camper.height} cm` : 'N/A'}</span>
-        </li>
-        <li>
-          <span>Tank:</span>
-          <span>{camper.tank ? `${camper.tank} L` : 'N/A'}</span>
-        </li>
-        <li>
-          <span>Consumption:</span>
-          <span>
-            {camper.consumption ? `${camper.consumption} L/100km` : 'N/A'}
-          </span>
-        </li>
+        <Detail label="Form" value={form} />
+        <Detail label="Length" value={length} />
+        <Detail label="Width" value={width} />
+        <Detail label="Height" value={height} />
+        <Detail label="Tank" value={tank} />
+        <Detail label="Consumption" value={consumption} />
       </ul>
     </div>
   );
 
   const renderReviews = () => (
     <div className={styles.reviews}>
-      {Array.isArray(camper.reviews) ? (
-        camper.reviews.map((review, index) => (
+      {reviews.length > 0 ? (
+        reviews.map((review, index) => (
           <div key={index} className={styles.review}>
             <p>
               <strong>{review.reviewer_name}</strong>
@@ -134,75 +98,97 @@ function CamperDetailPage() {
     <div>
       <Header />
       <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <h3 className={styles.name}>{name}</h3>
-          </div>
-          <div className={styles.ratingContainer}>
-            <img
-              src="/images/Rating.svg"
-              alt="Rating stars"
-              className={styles.ratingIcon}
-            />
-            <span className={styles.rating}>{rating} (2 Reviews)</span>
-            <img
-              src="/images/Map.svg"
-              alt="Map icon"
-              className={styles.mapIcon}
-            />
-            <span className={styles.city}>{location}</span>
-          </div>
-          <div>
-            <p className={styles.price}>{price.toFixed(2)} EUR</p>
-          </div>
-          <div className={styles.images}>
-            {gallery.length > 0 ? (
-              gallery
-                .slice(0, 2)
-                .map((image, index) => (
+        <div className={styles.header}>
+          <h3 className={styles.name}>{name}</h3>
+        </div>
+        <div className={styles.ratingContainer}>
+          <img
+            src="/images/Rating.svg"
+            alt="Rating stars"
+            className={styles.ratingIcon}
+          />
+          <span className={styles.rating}>{rating} (2 Reviews)</span>
+          <img
+            src="/images/Map.svg"
+            alt="Map icon"
+            className={styles.mapIcon}
+          />
+          <span className={styles.city}>{location}</span>
+        </div>
+        <div>
+          <p className={styles.price}>€{price.toFixed(2)}</p>
+        </div>
+        <div className={styles.images}>
+          {gallery.length > 0
+            ? gallery.slice(0, 4).map((image, index) => {
+                const actualImage =
+                  index < gallery.length ? gallery[index] : gallery[0]; // Подстановка первого изображения на место недостающего
+                console.log(`Rendering image ${index + 1}:`, actualImage);
+                return (
                   <img
                     key={index}
-                    src={image.original}
+                    src={actualImage.original}
                     alt={`Camper Image ${index + 1}`}
                     className={`${styles.image} ${
-                      index === gallery.slice(0, 4).length - 1
-                        ? styles.lastImage
-                        : ''
+                      index === 3 ? styles.lastImage : ''
                     }`}
                   />
-                ))
-            ) : (
-              <p>No images available</p>
-            )}
+                );
+              })
+            : null}
+        </div>
+        <p className={styles.description}>
+          {description ||
+            'Embrace simplicity and freedom with the Mavericks panel truck, an ideal choice for solo travelers or couples seeking a compact and efficient way to explore the open roads.'}
+        </p>
+        <div className={styles.contentWrapper}>
+          <div>
+            <div className={styles.tabs}>
+              <TabButton
+                label="Features"
+                isActive={activeTab === 'features'}
+                onClick={() => setActiveTab('features')}
+              />
+              <TabButton
+                label="Reviews"
+                isActive={activeTab === 'reviews'}
+                onClick={() => setActiveTab('reviews')}
+              />
+            </div>
           </div>
-          <p className={styles.description}>
-            {description || 'No description available'}
-          </p>
-          <div className={styles.tabs}>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === 'features' ? styles.activeTab : ''
-              }`}
-              onClick={() => setActiveTab('features')}
-            >
-              Features
-            </button>
-            <button
-              className={`${styles.tabButton} ${
-                activeTab === 'reviews' ? styles.activeTab : ''
-              }`}
-              onClick={() => setActiveTab('reviews')}
-            >
-              Reviews
-            </button>
-          </div>
-          <div className={styles.tabContent}>
-            {activeTab === 'features' ? renderFeatures() : renderReviews()}
+          <div className={styles.leftContent}>
+            <div className={styles.tabContent}>
+              {activeTab === 'features' ? renderFeatures() : renderReviews()}
+            </div>
+            <BookingForm /> {/* Используем новый компонент формы */}
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+const Feature = ({ icon, label }) => (
+  <div className={styles.filterSlot}>
+    <img src={icon} alt={label} className={styles.filterIcon} />
+    <span className={styles.filterLabel}>{label}</span>
+  </div>
+);
+
+const Detail = ({ label, value }) => (
+  <li className={styles.detailItem}>
+    <span className={styles.detailLabel}>{label}</span>
+    <span className={styles.detailValue}>{value}</span>
+  </li>
+);
+
+const TabButton = ({ label, isActive, onClick }) => (
+  <button
+    className={`${styles.tabButton} ${isActive ? styles.activeTab : ''}`}
+    onClick={onClick}
+  >
+    {label}
+  </button>
+);
 
 export default CamperDetailPage;

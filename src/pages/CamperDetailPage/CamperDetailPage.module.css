@@ -1,11 +1,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  align-items: center; /* Центрирует все содержимое контейнера по горизонтали */
-  max-width: 1440px; /* Ограничивает ширину, чтобы контейнер не растягивался на всю ширину */
-  margin: 0 auto; /* Центрирует страницу по горизонтали */
+  align-items: left;
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 48px 64px;
 }
+
 .vehiclecontainer {
   background-color: #f7f7f7;
   border-radius: 10px;
@@ -13,9 +14,10 @@
 }
 
 .name {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.33;
+  color: #101828;
   margin-bottom: 8px;
 }
 
@@ -30,20 +32,17 @@
 }
 
 .rightSection {
-  width: 40%; /* Делаем правый блок занимать оставшуюся половину страницы */
-  /* margin-left: 40px; */
+  width: 40%;
 }
 
 .title {
   font-size: 32px;
   font-weight: bold;
-  /* margin-bottom: 16px; */
 }
 
 .ratingContainer {
   display: flex;
   align-items: center;
-  /* gap: 16px; */
   margin-bottom: 16px;
 }
 
@@ -51,19 +50,18 @@
 .reviews,
 .location {
   font-size: 16px;
-  /* margin-bottom: 8px; */
   color: #555;
 }
+
 .rating {
   margin-right: 16px;
 }
 
 .price {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.33;
   color: #101828;
-  /* margin-bottom: 16px; */
 }
 
 .images {
@@ -77,6 +75,17 @@
   height: 312px;
   border-radius: 10px;
   object-fit: cover;
+  flex-shrink: 0;
+}
+
+.image {
+  object-fit: cover; /* Убедитесь, что изображение сохраняет пропорции */
+  display: block; /* Для стабильной работы в контейнере */
+}
+
+/* Дополнительные стили для последнего изображения */
+.lastImage {
+  border-radius: 10px; /* Повторяем для последнего изображения */
 }
 
 .description {
@@ -88,7 +97,6 @@
 
 .features {
   display: flex;
-
   gap: 40px;
 }
 
@@ -107,7 +115,6 @@
 .detailsList {
   list-style: none;
   padding: 0;
-  /* margin: 0 0 24px 0; */
   font-size: 16px;
   color: #555;
 }
@@ -116,60 +123,14 @@
   width: 50%;
 }
 
-.bookingTitle {
-  font-size: 24px;
-  font-weight: bold;
-  /* margin-bottom: 16px; */
-}
-
-.bookingText {
-  font-size: 16px;
-  color: #555;
-  /* margin-bottom: 24px; */
-}
-
-.bookingForm label {
-  display: block;
-  font-size: 14px;
-  color: #555;
-  /* margin-bottom: 8px; */
-}
-
-.bookingForm input,
-.bookingForm textarea {
-  width: 100%;
-  /* padding: 8px; */
-  font-size: 14px;
-  /* border: 1px solid #ddd; */
-  border-radius: 4px;
-  /* margin-bottom: 16px; */
-}
-
-.submitButton {
-  /* padding: 12px 24px; */
-  background-color: #e44848;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background-color 0.3s;
-}
-
-.submitButton:hover {
-  background-color: #d84343;
-}
-
 .tabs {
   display: flex;
   border-bottom: 1px solid #ddd;
-  margin-bottom: 34px; /* Добавляет отступ снизу для блока вкладок */
-  gap: 40px; /* Расстояние между кнопками */
+  margin-bottom: 34px;
+  gap: 40px;
 }
 
 .tabButton {
-  /* padding: 10px 20px; */
   font-size: 20px;
   font-weight: 600;
   color: #101828;
@@ -181,11 +142,11 @@
 }
 
 .tabButton:hover {
-  color: #e44848; /* Цвет при наведении */
+  color: #e44848;
 }
 
 .activeTab {
-  color: #e44848; /* Цвет активной вкладки */
+  color: #e44848;
 }
 
 .activeTab::after {
@@ -195,45 +156,40 @@
   left: 0;
   width: 100%;
   height: 5px;
-  background-color: #e44848; /* Красное подчеркивание */
+  background-color: #e44848;
 }
 
 .tabContent {
-  /* margin-top: 20px; */
-}
-
-.featuresList,
-.detailsList {
-  list-style: none;
-  padding: 0;
+  width: 631px;
+  padding: 44px 52px;
+  background-color: rgba(247, 247, 247, 1);
 }
 
 .reviews {
   width: 631px;
-  /* margin-top: 20px; */
 }
 
 .review {
-  /* margin-bottom: 15px; */
-  /* border-bottom: 1px solid #ddd; */
-  /* padding-bottom: 10px; */
 }
 
-.description {
-  /* margin-top: 20px; */
+.line {
+  margin-top: 24px;
+  width: 100%;
+  margin-bottom: 24px;
+  border: 1px solid rgba(218, 221, 225, 1);
 }
 
 .filterSlots {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
 }
 
 .filterSlot {
   display: flex;
   align-items: center;
-  background-color:rgb(212, 214, 216);
+  background-color: rgba(242, 244, 247, 1);
   border-radius: 100px;
   padding: 12px 18px 12px 18px;
 }
@@ -258,14 +214,43 @@
 .detailsList li {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0; /* Отступ сверху и снизу */
-  border-bottom: 1px solid #ccc; /* Опционально, линия между элементами */
+  padding: 8px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .detailsList li span:first-child {
-  font-weight: bold; /* Выделение названия */
+  font-weight: bold;
 }
 
 .detailsList li span:last-child {
-  margin-left: 16px; /* Отступ между названием и значением */
+  margin-left: 16px;
+}
+
+.contentWrapper {
+  /* display: flex;
+  justify-content: space-between;
+  gap: 20px; */
+}
+
+.leftContent {
+  display: flex;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px; /* Настройте отступы по необходимости */
+}
+
+.detailLabel {
+  font-weight: bold; /* По желанию: выделите лейбл жирным шрифтом */
+  text-decoration: none !important; /* Уберите подчеркивание */
+  border: none !important; /* Убедитесь, что нет рамки */
+  background: none !important; /* Убедитесь, что нет фонового подчеркивания */
+}
+
+.detailValue {
+  text-decoration: none !important; /* Уберите подчеркивание */
+  border: none !important; /* Убедитесь, что нет рамки */
+  background: none !important; /* Убедитесь, что нет фонового подчеркивания */
 }
