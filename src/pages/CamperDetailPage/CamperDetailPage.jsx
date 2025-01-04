@@ -122,7 +122,7 @@ function CamperDetailPage() {
           {gallery.length > 0
             ? gallery.slice(0, 4).map((image, index) => {
                 const actualImage =
-                  index < gallery.length ? gallery[index] : gallery[0]; // Подстановка первого изображения на место недостающего
+                  index < gallery.length ? gallery[index] : gallery[0]; 
                 console.log(`Rendering image ${index + 1}:`, actualImage);
                 return (
                   <img
@@ -160,7 +160,7 @@ function CamperDetailPage() {
             <div className={styles.tabContent}>
               {activeTab === 'features' ? renderFeatures() : renderReviews()}
             </div>
-            <BookingForm /> {/* Используем новый компонент формы */}
+            <BookingForm />
           </div>
         </div>
       </div>

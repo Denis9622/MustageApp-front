@@ -54,10 +54,9 @@
   cursor: pointer;
   transition: fill 0.3s ease;
 }
-/* Стиль для активной иконки */
 .favorite {
-  color: rgba(228, 72, 72, 1); /* Задаём красный цвет */
-  fill: rgba(228, 72, 72, 1); /* Для SVG, если он поддерживает fill */
+  color: rgba(228, 72, 72, 1); 
+  fill: rgba(228, 72, 72, 1); 
 }
 
 .ratingContainer {

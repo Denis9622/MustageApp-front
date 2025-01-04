@@ -1,11 +1,9 @@
-/* CSS для Filters */
 
 .filtersContainer {
   width: 360px;
   margin-left: 64px;
   margin-right: 64px;
-  /* padding: 0px 0px 0 64px; */
-  margin-top: 0; /* Убираем отступ сверху для выравнивания с логотипом */
+  margin-top: 0; 
   border-radius: 8px;
 }
 
@@ -148,9 +146,9 @@
   font-weight: 600;
   font-size: 16px;
   transition: background-color 0.3s ease;
-  text-align: center; /* Центрируем текст */
-  line-height: 1.5; /* Высота строки для центрирования текста по вертикали */
-  box-sizing: border-box; /* Новый стиль */
+  text-align: center; 
+  line-height: 1.5; 
+  box-sizing: border-box; 
 }
 
 
@@ -164,5 +162,5 @@
 
 
 .applyButton:focus {
-  outline: none; /* Убираем стандартный обвод фокуса */
+  outline: none; 
 }

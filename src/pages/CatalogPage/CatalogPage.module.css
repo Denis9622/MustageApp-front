@@ -1,6 +1,6 @@
 .catalogContainer {
   display: flex;
-  padding-top: 48px; /* Отступ сверху для предотвращения перекрытия хедером */
+  padding-top: 48px; 
 }
 
 .catalogList {

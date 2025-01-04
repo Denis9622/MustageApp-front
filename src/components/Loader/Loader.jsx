@@ -13,13 +13,13 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '100vh', // Повна висота екрана
+    height: '100vh', 
   },
   spinner: {
     width: '40px',
     height: '40px',
     border: '4px solid rgba(0, 0, 0, 0.1)',
-    borderTop: '4px solid #3498db', // Колір спінера
+    borderTop: '4px solid #3498db', 
     borderRadius: '50%',
     animation: 'spin 1s linear infinite',
   },

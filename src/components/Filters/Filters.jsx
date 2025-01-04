@@ -89,7 +89,7 @@ function Filters({ onApplyFilters }) {
       <div className={`${styles.filterSection} ${styles.equipmentSection}`}>
         <h2 className={styles.subtitleh2}>Filters</h2>
         <label className={styles.subtitle}>Vehicle Equipment</label>
-        <div className={styles.line}></div> {/* Добавление линии */}
+        <div className={styles.line}></div> 
         <div className={styles.slotContainer}>
           {Object.keys(features).map(feature => (
             <label
@@ -116,7 +116,7 @@ function Filters({ onApplyFilters }) {
 
       <div className={styles.filterSection}>
         <label className={styles.subtitle}>Vehicle Type</label>
-        <div className={styles.line}></div> {/* Добавление линии */}
+        <div className={styles.line}></div> 
         <div className={styles.slotContainer}>
           {Object.keys(vehicleType).map(type => (
             <label

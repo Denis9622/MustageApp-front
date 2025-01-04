@@ -1,20 +1,18 @@
-/* CSS для Header */
 .header {
   max-width: 1440px;
   display: flex;
   align-items: center;
-  /* position: fixed; */
   top: 0;
   width: 100%;
   background-color: #f7f7f7;
   z-index: 1000;
-  padding: 0 64px; /* Отступ слева и справа для центрирования контента */
+  padding: 0 64px; 
 }
 
 .logo {
   display: flex;
   align-items: center;
-  margin-right: 20px; /* Добавляем немного отступа справа для логотипа */
+  margin-right: 20px; 
 }
 
 .logoImage {
@@ -54,7 +52,7 @@
 }
 
 .active {
-  color: red; /* Красный цвет для активного пункта навигации */
+  color: red; 
 }
 
 

@@ -26,7 +26,7 @@ function CatalogPage() {
 
   useEffect(() => {
     dispatch(fetchCampers({ filters, page }));
-  }, [dispatch, filters, page]); // Add all dependencies
+  }, [dispatch, filters, page]); 
 
   const loadMore = () => {
     setDisplayedCampers(prevDisplayedCampers => prevDisplayedCampers + 4);
@@ -58,7 +58,7 @@ function CatalogPage() {
     if (page > 1) {
       dispatch(fetchCampers({ filters, page }));
     }
-  }, [dispatch, filters, page]); // Add all dependencies
+  }, [dispatch, filters, page]); 
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -75,7 +75,7 @@ function CatalogPage() {
                 <Card key={camper.id} camper={camper} />
               ))
             ) : (
-              <p>Нет результатов по выбранным фильтрам</p>
+              <p>There are no results for the selected filters</p>
             )}
           </div>
           {filteredCampers.length > 0 &&

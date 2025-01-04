@@ -1,4 +1,3 @@
-// redux/filtersSlice.js
 import { createSlice } from '@reduxjs/toolkit';
 
 const filtersSlice = createSlice({
@@ -31,7 +30,6 @@ const filtersSlice = createSlice({
       state.vehicleType[type] = !state.vehicleType[type];
     },
     clearFilters: state => {
-      // Возвращаем начальное состояние при очистке фильтров
       state.location = '';
       state.features = {
         ac: false,

@@ -8,7 +8,7 @@ function Header() {
     <header className={styles.header}>
       <a href="/" className={styles.logo}>
         <img
-          src="/images/TravelTrucks.svg" // Абсолютный путь к логотипу
+          src="/images/TravelTrucks.svg" 
           alt="TravelTrucks Logo"
           className={styles.logoImage}
         />

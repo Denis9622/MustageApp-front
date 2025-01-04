@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Действие для получения списка кемперов
 export const fetchCampers = createAsyncThunk(
   'vehicles/fetchCampers',
   async ({ filters, page = 1 }, { rejectWithValue }) => {
@@ -30,7 +29,6 @@ export const fetchCampers = createAsyncThunk(
   }
 );
 
-// Действие для получения деталей кемпера
 export const fetchCamperDetails = createAsyncThunk(
   'vehicles/fetchCamperDetails',
   async (id, { rejectWithValue }) => {
@@ -49,7 +47,7 @@ const vehiclesSlice = createSlice({
   name: 'vehicles',
   initialState: {
     list: [],
-    camperDetails: null, // Добавлено состояние для деталей кемпера
+    camperDetails: null,
     loading: false,
     error: null,
   },
