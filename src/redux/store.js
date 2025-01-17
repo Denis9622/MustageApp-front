@@ -1,13 +1,10 @@
-// store.js
-import { configureStore } from '@reduxjs/toolkit';
-import vehiclesReducer from './vehiclesSlice';
-import filtersReducer from './filtersSlice';
-import favoritesReducer from './favoritesSlice'; 
+import { configureStore } from "@reduxjs/toolkit";
+import filmsReducer from "./filmsSlice";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    vehicles: vehiclesReducer,
-    filters: filtersReducer,
-    favorites: favoritesReducer, 
+    films: filmsReducer,
   },
 });
+
+export default store;

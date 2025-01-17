@@ -1,0 +1,28 @@
+.movie-details {
+  padding: 1rem;
+  text-align: center;
+}
+
+.movie-details img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+@media (min-width: 600px) {
+  .movie-details {
+    text-align: left;
+  }
+
+  .movie-details img {
+    float: left;
+    margin-right: 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  .movie-details {
+    padding: 2rem;
+  }
+}
