@@ -110,15 +110,13 @@ const MovieList = () => {
                     : 'N/A'}
                 </p>
                 <p>
-                  <strong>Rating:</strong> {movie.rating || 'N/A'}/10
+                  <strong>Rating: </strong> {movie.rating || 'N/A'}/10
                 </p>
-                <button onClick={() => dispatch(toggleFavorite(movie._id))}>
-                  {movie.isFavorite
-                    ? 'Remove from Favorites'
-                    : 'Add to Favorites'}
-                </button>
               </div>
             </Link>
+            <button onClick={() => dispatch(toggleFavorite(movie._id))}>
+              {movie.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+            </button>
           </li>
         ))}
       </ul>
