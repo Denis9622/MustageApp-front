@@ -2,7 +2,9 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 export const fetchFilms = createAsyncThunk('films/fetchFilms', async () => {
-  const response = await axios.get('http://localhost:5000/api/films');
+  const response = await axios.get(
+    'https://filmsapp-back.onrender.com/api/films'
+  );
   return response.data;
 });
 
@@ -32,7 +34,7 @@ const filmsSlice = createSlice({
           state.films = action.payload;
         } else {
           state.films = [];
-          state.error = 'Данные получены не в виде массива';
+          state.error = 'Data received is not an array';
         }
       })
       .addCase(fetchFilms.rejected, (state, action) => {
