@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { addMovie } from '../../services/api'; // Импортируем функцию addMovie из api.js
-import './AddMovie.css'; // Подключение стилей
+import { addMovie } from '../../services/api'; 
+import './AddMovie.css'; 
 
 const AddMovie = () => {
   const [title, setTitle] = useState('');

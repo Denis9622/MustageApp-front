@@ -4,6 +4,8 @@ import MovieDetails from "./components/MovieDetails/MovieDetails";
 import AddMovie from "./components/AddMovie/AddMovie";
 import EditMovie from "./components/EditMovie/EditMovie";
 
+
+
 function App() {
   return (
     <Router>

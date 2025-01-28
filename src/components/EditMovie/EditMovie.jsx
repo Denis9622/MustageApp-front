@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getMovieById, updateMovie } from '../../services/api'; // Импортируем функции getMovieById и updateMovie из api.js
-import './EditMovie.css'; // Подключение стилей
+import { getMovieById, updateMovie } from '../../services/api'; 
+import './EditMovie.css'; 
 
 const EditMovie = () => {
   const { id } = useParams();
