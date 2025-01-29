@@ -2,7 +2,7 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 20px;
   text-align: center;
   transition: transform 0.3s ease;
   display: flex;
@@ -21,7 +21,7 @@
 }
 
 .moviePoster {
-  width: 300px; /* Уменьшаем размер изображения */
+  width: 300px; 
   height: auto;
   border-radius: 4px;
   margin-bottom: 1rem;
@@ -45,7 +45,7 @@
   width: 150px;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #007bff;
+  background-color: #b12121;
   color: white;
   border: none;
   border-radius: 4px;
@@ -57,9 +57,8 @@
   background-color: #0056b3;
 }
 
-/* Мобильная адаптация */
 @media (max-width: 600px) {
   .moviePoster {
-    width: 50%; /* Для мобильных устройств изображение занимает всю ширину */
+    width: 50%;
   }
 }

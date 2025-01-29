@@ -4,7 +4,7 @@
   justify-content: space-between;
   flex-wrap: wrap; 
   gap: 1rem;
-  padding: 1rem;
+  padding: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -16,7 +16,7 @@
   border-radius: 4px;
   background-color: white;
   transition: border-color 0.3s ease;
-  min-width: 150px; /* Добавим минимальную ширину */
+  min-width: 150px; 
 }
 
 .input:focus, .select:focus {

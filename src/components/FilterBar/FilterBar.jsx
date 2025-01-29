@@ -1,15 +1,10 @@
-import styles from './FilterBar.module.css'; // Импортируем стили как модуль
+import styles from './FilterBar.module.css';
 
 const FilterBar = ({
-  searchQuery,
-  handleSearch,
-  showFavorites,
-  setShowFavorites,
   filter,
   setFilter,
   sort,
   setSort,
-  handleAddMovie,
 }) => {
   return (
     <div className={styles.filterBar}>
@@ -36,25 +31,7 @@ const FilterBar = ({
           <option value="rating">By Rating</option>
         </select>
       </div>
-      <div className={styles.filtersright}>
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchQuery}
-          onChange={handleSearch}
-          className={styles.input}
-        />
-
-        <button onClick={handleAddMovie} className={styles.button}>
-          Add Movie
-        </button>
-        <button
-          onClick={() => setShowFavorites(!showFavorites)}
-          className={styles.button}
-        >
-          {showFavorites ? 'Show All' : 'Show Favorites'}
-        </button>
-      </div>
+      
     </div>
   );
 };

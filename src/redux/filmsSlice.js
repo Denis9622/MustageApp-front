@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Загрузка избранных фильмов из localStorage
 const savedFavorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
 export const fetchFilms = createAsyncThunk('films/fetchFilms', async () => {
@@ -15,7 +14,7 @@ const filmsSlice = createSlice({
   name: 'films',
   initialState: {
     films: [],
-    favorites: savedFavorites, // Инициализация избранных фильмов
+    favorites: savedFavorites, 
     status: 'idle',
     error: null,
   },
@@ -24,7 +23,6 @@ const filmsSlice = createSlice({
       const film = state.films.find(film => film._id === action.payload);
       if (film) {
         film.isFavorite = !film.isFavorite;
-        // Обновление избранных фильмов в state и localStorage
         if (film.isFavorite) {
           state.favorites.push(film._id);
         } else {

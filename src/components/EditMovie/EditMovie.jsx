@@ -44,14 +44,14 @@ const EditMovie = () => {
       actors: actors.split(',').map(actor => actor.trim()),
       director,
       genre: genre.split(',').map(g => g.trim()),
-      rating: parseFloat(rating), // Ensure this is a number
+      rating: parseFloat(rating), 
       releaseDate,
       poster,
     };
     try {
       await updateMovie(id, updatedMovie);
       setMessage('Movie updated successfully!');
-      navigate(`/movie/${id}`); // Redirect to movie details page after update
+      navigate(`/movie/${id}`);
     } catch (error) {
       console.error('Error updating movie:', error);
       setMessage('Error updating movie. Please try again.');

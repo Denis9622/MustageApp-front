@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import { fetchFilms } from '../../redux/filmsSlice';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import './MovieList.css';
+import Header from '../Header/Header';
+import styles from './MovieList.module.css';
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,8 @@ const MovieList = () => {
   const [showFavorites, setShowFavorites] = useState(false);
   const [filter, setFilter] = useState('');
   const [sort, setSort] = useState('');
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchFilms());
@@ -46,27 +48,36 @@ const MovieList = () => {
     : [];
 
   return (
-    <div className="movie-list">
-      <h1>Films</h1>
-      {status === 'failed' && (
-        <p>Failed to fetch movies. Please try again later.</p>
-      )}
-      <FilterBar
+    <div>
+      <Header
         searchQuery={searchQuery}
         handleSearch={handleSearch}
         showFavorites={showFavorites}
         setShowFavorites={setShowFavorites}
-        filter={filter}
-        setFilter={setFilter}
-        sort={sort}
-        setSort={setSort}
         handleAddMovie={handleAddMovie}
       />
-      <ul className="movie-list__items">
-        {filteredMovies.map(movie => (
-          <MovieCard key={movie._id} movie={movie} />
-        ))}
-      </ul>
+      <div className={styles.movieList}>
+        {status === 'failed' && (
+          <p className={styles.error}>
+            Failed to fetch movies. Please try again later.
+          </p>
+        )}
+        <FilterBar
+          filter={filter}
+          setFilter={setFilter}
+          sort={sort}
+          setSort={setSort}
+        />
+        <ul className={styles.movieListItems}>
+          {filteredMovies.map(movie => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              className={styles.movieCard}
+            />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
