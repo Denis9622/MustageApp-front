@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { addMovie } from '../../services/api'; 
-import './AddMovie.css'; 
+import { useNavigate, useLocation } from 'react-router-dom';
+import { addMovie } from '../../services/api';
+import './AddMovie.css';
 
 const AddMovie = () => {
   const [title, setTitle] = useState('');
@@ -13,8 +14,21 @@ const AddMovie = () => {
   const [poster, setPoster] = useState('');
   const [message, setMessage] = useState(null);
 
+  const navigate = useNavigate(); // Отримуємо функцію навігації
+  const location = useLocation();
+  const movies = location.state?.movies || [];
+
   const handleSubmit = async e => {
     e.preventDefault();
+
+    const movieExists = movies.some(
+      movie => movie.title.toLowerCase() === title.toLowerCase()
+    );
+    if (movieExists) {
+      setMessage('Movie already exists in the list.');
+      return;
+    }
+
     const movie = {
       title,
       description,
@@ -25,9 +39,14 @@ const AddMovie = () => {
       releaseDate,
       poster,
     };
+
     try {
       await addMovie(movie);
       setMessage('Movie added successfully!');
+
+      setTimeout(() => {
+        navigate('/');
+      }, 1500);
     } catch (error) {
       console.error('Error adding movie:', error);
       setMessage('Error adding movie. Please try again.');
@@ -36,7 +55,7 @@ const AddMovie = () => {
 
   return (
     <div className="add-movie">
-      <h1 >Add Movie</h1>
+      <h1>Add Movie</h1>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit} className="add-movie__form">
         <input

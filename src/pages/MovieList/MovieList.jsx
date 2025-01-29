@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { fetchFilms } from '../../redux/filmsSlice';
 import FilterBar from '../../components/FilterBar/FilterBar';
 import MovieCard from '../../components/MovieCard/MovieCard';
-import Header from '../Header/Header';
+import Header from '../../components/Header/Header';
 import styles from './MovieList.module.css';
 
 const MovieList = () => {
@@ -29,7 +29,7 @@ const MovieList = () => {
   };
 
   const handleAddMovie = () => {
-    navigate('/add');
+    navigate('/add', { state: { movies } }); // Передаём список фильмов
   };
 
   const filteredMovies = Array.isArray(movies)
@@ -52,8 +52,6 @@ const MovieList = () => {
       <Header
         searchQuery={searchQuery}
         handleSearch={handleSearch}
-        showFavorites={showFavorites}
-        setShowFavorites={setShowFavorites}
         handleAddMovie={handleAddMovie}
       />
       <div className={styles.movieList}>
@@ -67,6 +65,8 @@ const MovieList = () => {
           setFilter={setFilter}
           sort={sort}
           setSort={setSort}
+          showFavorites={showFavorites}
+          setShowFavorites={setShowFavorites}
         />
         <ul className={styles.movieListItems}>
           {filteredMovies.map(movie => (

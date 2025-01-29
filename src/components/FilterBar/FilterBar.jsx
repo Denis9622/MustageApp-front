@@ -1,6 +1,8 @@
 import styles from './FilterBar.module.css';
 
 const FilterBar = ({
+   showFavorites,
+  setShowFavorites,
   filter,
   setFilter,
   sort,
@@ -30,8 +32,13 @@ const FilterBar = ({
           <option value="">No Sorting</option>
           <option value="rating">By Rating</option>
         </select>
+        <button
+          onClick={() => setShowFavorites(!showFavorites)}
+          className={styles.button}
+        >
+          {showFavorites ? 'Show All' : 'Show Favorites'}
+        </button>
       </div>
-      
     </div>
   );
 };

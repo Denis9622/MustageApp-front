@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMovieById, deleteMovie } from '../../services/api';
-import './MovieDetails.css';
+import styles from './MovieDetails.module.css'; // Импортируйте стили как модуль
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -37,13 +37,20 @@ const MovieDetails = () => {
   }
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div className={styles.loader}>Loading...</div>;
   }
 
   return (
-    <div className="movie-details">
+    <div className={styles.movieDetails}>
+      <a className={styles.go_back} href="/">
+        Go back
+      </a>
       <h1>{movie.title}</h1>
-      <img src={movie.poster} alt={movie.title} />
+      <img
+        src={movie.poster}
+        alt={movie.title}
+        className={styles.moviePoster}
+      />
       <p>{movie.description}</p>
       <p>
         <strong>Actors:</strong> {movie.actors.join(', ')}
@@ -61,8 +68,12 @@ const MovieDetails = () => {
         <strong>Release Date:</strong>{' '}
         {new Date(movie.releaseDate).toLocaleDateString()}
       </p>
-      <button onClick={() => navigate(`/edit/${id}`)}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={() => navigate(`/edit/${id}`)} className={styles.button}>
+        Edit
+      </button>
+      <button onClick={handleDelete} className={styles.button}>
+        Delete
+      </button>
     </div>
   );
 };

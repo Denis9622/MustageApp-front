@@ -3,8 +3,6 @@ import styles from './Header.module.css';
 const Header = ({
   searchQuery,
   handleSearch,
-  showFavorites,
-  setShowFavorites,
   handleAddMovie,
 }) => {
   return (
@@ -22,12 +20,7 @@ const Header = ({
         <button onClick={handleAddMovie} className={styles.button}>
           Add Movie
         </button>
-        <button
-          onClick={() => setShowFavorites(!showFavorites)}
-          className={styles.button}
-        >
-          {showFavorites ? 'Show All' : 'Show Favorites'}
-        </button>
+        
       </div>
     </div>
   );
