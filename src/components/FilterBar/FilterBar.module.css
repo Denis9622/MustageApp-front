@@ -10,7 +10,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
- .select {
+.select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -46,7 +46,6 @@
 
 }
 
-/* Мобильная адаптация */
 @media (max-width: 600px) {
   .filterBar {
     flex-direction: column;

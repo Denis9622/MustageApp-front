@@ -6,11 +6,12 @@ const MovieDetails = lazy(() => import('./pages/MovieDetails/MovieDetails'));
 const AddMovie = lazy(() => import('./components/AddMovie/AddMovie'));
 const EditMovie = lazy(() => import('./components/EditMovie/EditMovie'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+import './Loader.css';
 
 function App() {
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="loader-container">Loading...</div>}>
         <Routes>
           <Route path="/" element={<MovieList />} />
           <Route path="/movie/:id" element={<MovieDetails />} />

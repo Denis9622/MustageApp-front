@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMovieById, deleteMovie } from '../../services/api';
-import styles from './MovieDetails.module.css'; // Импортируйте стили как модуль
+import styles from './MovieDetails.module.css'; 
 
 const MovieDetails = () => {
   const { id } = useParams();

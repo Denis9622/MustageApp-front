@@ -14,7 +14,7 @@ const AddMovie = () => {
   const [poster, setPoster] = useState('');
   const [message, setMessage] = useState(null);
 
-  const navigate = useNavigate(); // Отримуємо функцію навігації
+  const navigate = useNavigate(); 
   const location = useLocation();
   const movies = location.state?.movies || [];
 
