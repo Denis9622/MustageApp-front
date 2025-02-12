@@ -2,9 +2,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toggleFavorite } from '../../redux/filmsSlice';
 import styles from './MovieCard.module.css';
+import { useNavigate } from 'react-router-dom';
+
 
 const MovieCard = ({ movie }) => {
   const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
   return (
     <li className={styles.movieItem}>
@@ -47,9 +51,15 @@ const MovieCard = ({ movie }) => {
       </Link>
       <button
         onClick={() => dispatch(toggleFavorite(movie._id))}
+        className={styles.favoriteButton}
+      >
+        {movie.isFavorite ? '❤️' : '🤍'}
+      </button>
+      <button
+        onClick={() => navigate(`/movie/${movie._id}`)}
         className={styles.movieItemButton}
       >
-        {movie.isFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        Show more
       </button>
     </li>
   );

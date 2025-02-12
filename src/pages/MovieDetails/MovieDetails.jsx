@@ -5,6 +5,7 @@ import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { id } = useParams();
+  
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
