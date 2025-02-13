@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://filmsapp-back.onrender.com/api/films";
+const API_BASE_URL = 'https://filmsapp-back-env.up.railway.app/api/films';
 
 export const getMovies = () => {
   return axios.get(API_BASE_URL);
