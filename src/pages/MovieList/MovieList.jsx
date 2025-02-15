@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchFilms } from '../../redux/filmsSlice';
@@ -6,10 +6,11 @@ import FilterBar from '../../components/FilterBar/FilterBar';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Header from '../../components/Header/Header';
 import styles from './MovieList.module.css';
+import defaultMovies from '../../assets/defaultMovies.json';
 
 const MovieList = () => {
   const dispatch = useDispatch();
-  const movies = useSelector(state => state.films.films) || [];
+  const movies = useSelector(state => state.films.films);
   const status = useSelector(state => state.films.status);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFavorites, setShowFavorites] = useState(false);
@@ -23,17 +24,22 @@ const MovieList = () => {
     }
   }, [status, dispatch]);
 
+  const localMovies = useMemo(
+    () => (movies.length > 0 ? movies : defaultMovies),
+    [movies]
+  );
+
   const handleSearch = event => {
     const query = event.target.value.toLowerCase();
     setSearchQuery(query);
   };
 
   const handleAddMovie = () => {
-    navigate('/add', { state: { movies } }); // Передаём список фильмов
+    navigate('/add', { state: { movies: localMovies } });
   };
 
-  const filteredMovies = Array.isArray(movies)
-    ? movies
+  const filteredMovies = Array.isArray(localMovies)
+    ? localMovies
         .filter(movie => (showFavorites ? movie.isFavorite : true))
         .filter(movie => movie.title.toLowerCase().includes(searchQuery))
         .filter(movie =>
@@ -71,7 +77,7 @@ const MovieList = () => {
         <ul className={styles.movieListItems}>
           {filteredMovies.map(movie => (
             <MovieCard
-              key={movie._id}
+              key={movie._id || movie.id}
               movie={movie}
               className={styles.movieCard}
             />
