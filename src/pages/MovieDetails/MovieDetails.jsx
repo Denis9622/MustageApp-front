@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMovieById, deleteMovie } from '../../services/api';
-import styles from './MovieDetails.module.css'; 
+import defaultMovies from '../../assets/defaultMovies.json';
+import styles from './MovieDetails.module.css';
 
 const MovieDetails = () => {
   const { id } = useParams();
-  
   const [movie, setMovie] = useState(null);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,7 +17,12 @@ const MovieDetails = () => {
         setMovie(response.data);
       } catch (error) {
         console.error('Error fetching movie:', error);
-        setError('Failed to load movie details. Please try again later.');
+        const defaultMovie = defaultMovies.find(m => m.id.toString() === id);
+        if (defaultMovie) {
+          setMovie(defaultMovie);
+        } else {
+          setError('Failed to load movie details. Please try again later.');
+        }
       }
     };
     fetchMovie();
