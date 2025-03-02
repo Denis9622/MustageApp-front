@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchFilms } from '../../redux/filmsSlice';
@@ -6,7 +6,6 @@ import FilterBar from '../../components/FilterBar/FilterBar';
 import MovieCard from '../../components/MovieCard/MovieCard';
 import Header from '../../components/Header/Header';
 import styles from './MovieList.module.css';
-import defaultMovies from '../../assets/defaultMovies.json';
 
 const MovieList = () => {
   const dispatch = useDispatch();
@@ -24,22 +23,8 @@ const MovieList = () => {
     }
   }, [status, dispatch]);
 
-  const localMovies = useMemo(
-    () => (movies.length > 0 ? movies : defaultMovies),
-    [movies]
-  );
-
-  const handleSearch = event => {
-    const query = event.target.value.toLowerCase();
-    setSearchQuery(query);
-  };
-
-  const handleAddMovie = () => {
-    navigate('/add', { state: { movies: localMovies } });
-  };
-
-  const filteredMovies = Array.isArray(localMovies)
-    ? localMovies
+  const filteredMovies = Array.isArray(movies)
+    ? movies
         .filter(movie => (showFavorites ? movie.isFavorite : true))
         .filter(movie => movie.title.toLowerCase().includes(searchQuery))
         .filter(movie =>
@@ -57,32 +42,39 @@ const MovieList = () => {
     <div>
       <Header
         searchQuery={searchQuery}
-        handleSearch={handleSearch}
-        handleAddMovie={handleAddMovie}
+        handleSearch={e => setSearchQuery(e.target.value.toLowerCase())}
+        handleAddMovie={() => navigate('/add')}
       />
       <div className={styles.movieList}>
+        {status === 'loading' && (
+          <p className={styles.loading}>Loading database, please wait...</p>
+        )}
         {status === 'failed' && (
           <p className={styles.error}>
-            Failed to fetch movies. Please try again later.
+            Error loading movies. Please try again later.
           </p>
         )}
-        <FilterBar
-          filter={filter}
-          setFilter={setFilter}
-          sort={sort}
-          setSort={setSort}
-          showFavorites={showFavorites}
-          setShowFavorites={setShowFavorites}
-        />
-        <ul className={styles.movieListItems}>
-          {filteredMovies.map(movie => (
-            <MovieCard
-              key={movie._id || movie.id}
-              movie={movie}
-              className={styles.movieCard}
+        {status === 'succeeded' && (
+          <>
+            <FilterBar
+              filter={filter}
+              setFilter={setFilter}
+              sort={sort}
+              setSort={setSort}
+              showFavorites={showFavorites}
+              setShowFavorites={setShowFavorites}
             />
-          ))}
-        </ul>
+            <ul className={styles.movieListItems}>
+              {filteredMovies.map(movie => (
+                <MovieCard
+                  key={movie._id || movie.id}
+                  movie={movie}
+                  className={styles.movieCard}
+                />
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </div>
   );
