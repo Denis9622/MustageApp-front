@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask, updateTask } from "../../redux/tasksSlice";
+import styles from './TaskForm.module.css';
 
 const TaskForm = ({ editTask, onSuccess }) => {
   const dispatch = useDispatch();
@@ -23,8 +24,9 @@ const TaskForm = ({ editTask, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: 20 }}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
+        className={styles.input}
         type="text"
         placeholder="Заголовок"
         value={title}
@@ -32,17 +34,18 @@ const TaskForm = ({ editTask, onSuccess }) => {
         required
       />
       <input
+        className={styles.input}
         type="text"
         placeholder="Опис"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         required
       />
-      <select value={status} onChange={(e) => setStatus(e.target.value)}>
+      <select className={styles.select} value={status} onChange={(e) => setStatus(e.target.value)}>
         <option value="undone">Не виконано</option>
         <option value="done">Виконано</option>
       </select>
-      <button type="submit">{editTask ? "Зберегти" : "Додати"}</button>
+      <button className={styles.button} type="submit">{editTask ? "Зберегти" : "Додати"}</button>
     </form>
   );
 };

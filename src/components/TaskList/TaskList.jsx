@@ -2,6 +2,7 @@ import  { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchTasks, deleteTask, updateTask } from "../../redux/tasksSlice";
 import TaskForm from "../TaskForm/TaskForm";
+import styles from './TaskList.module.css';
 
 const TaskList = ({ filter, search }) => {
   const dispatch = useDispatch();
@@ -36,19 +37,27 @@ const TaskList = ({ filter, search }) => {
         <TaskForm editTask={editTask} onSuccess={handleEditSuccess} />
       )}
       {tasks.length === 0 && <div>Немає завдань</div>}
-      <ul>
+      <ul className={styles.list}>
         {tasks.map((task) => (
-          <li key={task._id} style={{ marginBottom: 10 }}>
-            <b>{task.title}</b> — {task.description} [{task.status === "done" ? "Виконано" : "Не виконано"}]
-            <button onClick={() => handleToggleStatus(task)} style={{ marginLeft: 10 }}>
-              {task.status === "done" ? "Зробити невиконаним" : "Зробити виконаним"}
-            </button>
-            <button onClick={() => handleEdit(task)} style={{ marginLeft: 10 }}>
-              Редагувати
-            </button>
-            <button onClick={() => handleDelete(task._id)} style={{ marginLeft: 10, color: "red" }}>
-              Видалити
-            </button>
+          <li key={task._id} className={styles.item}>
+            <div className={styles.info}>
+              <span className={styles.title}>{task.title}</span>
+              <span className={styles.desc}>{task.description}</span>
+              <span className={`${styles.status} ${task.status === 'undone' ? styles.statusUndone : ''}`}>
+                {task.status === "done" ? "Виконано" : "Не виконано"}
+              </span>
+            </div>
+            <div className={styles.actions}>
+              <button onClick={() => handleToggleStatus(task)} className={styles.button}>
+                {task.status === "done" ? "Зробити невиконаним" : "Зробити виконаним"}
+              </button>
+              <button onClick={() => handleEdit(task)} className={`${styles.button} ${styles.editBtn}`}>
+                Редагувати
+              </button>
+              <button onClick={() => handleDelete(task._id)} className={`${styles.button} ${styles.deleteBtn}`}>
+                Видалити
+              </button>
+            </div>
           </li>
         ))}
       </ul>

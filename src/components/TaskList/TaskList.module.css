@@ -1,0 +1,117 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.desc {
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.status {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: #c6f6d5;
+  color: #2f855a;
+}
+
+.statusUndone {
+  background: #fed7d7;
+  color: #c53030;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.editBtn {
+  background: #4299e1;
+  color: white;
+}
+
+.editBtn:hover {
+  background: #3182ce;
+}
+
+.deleteBtn {
+  background: #fc8181;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #f56565;
+}
+
+@media (max-width: 600px) {
+  .item {
+    padding: 16px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .button {
+    flex: 1;
+    min-width: 120px;
+  }
+}
