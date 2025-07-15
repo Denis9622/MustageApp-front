@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filmsReducer from "./filmsSlice";
+import tasksReducer from "./tasksSlice";
 
-const store = configureStore({
+export const store = configureStore({
   reducer: {
-    films: filmsReducer,
+    tasks: tasksReducer,
   },
 });
-
-export default store;
