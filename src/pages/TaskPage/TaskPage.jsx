@@ -22,13 +22,19 @@ const TaskPage = () => {
   }, [status, dispatch, filter, search]);
 
   useEffect(() => {
-    if (status === "loading" && timer > 0) {
-      const countdown = setInterval(() => {
-        setTimer((prev) => prev - 1);
+    let countdown;
+    if (status === "loading") {
+      setTimer(60); // сбросить таймер при начале загрузки
+      countdown = setInterval(() => {
+        setTimer((prev) => (prev > 0 ? prev - 1 : 0));
       }, 1000);
-      return () => clearInterval(countdown);
+    } else {
+      countdown = setInterval(() => {
+        setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
     }
-  }, [status, timer]);
+    return () => clearInterval(countdown);
+  }, [status]);
 
   return (
     <div className={styles.pageContainer}>
@@ -38,16 +44,13 @@ const TaskPage = () => {
         <TaskFilter filter={filter} setFilter={setFilter} />
         <TaskSearch search={search} setSearch={setSearch} />
       </div>
-      {status === "loading" && (
-        <p style={{ color: "#3182ce", textAlign: "center" }}>
-          Завантаження бази даних, зачекайте...{" "}
-          {timer > 0 ? `${timer}с` : "Тайм-аут!"}
-        </p>
-      )}
-      {status === "failed" && (
-        <p style={{ color: "#e53e3e", textAlign: "center" }}>
-          Помилка завантаження задач. Спробуйте пізніше.
-        </p>
+      {/* Таймер-оверлей только если нет подключения */}
+      {status !== "succeeded" && timer > 0 && (
+        <div className={styles.overlay}>
+          <div className={styles.overlayContent}>
+            Очікування підключення... {timer}с
+          </div>
+        </div>
       )}
       <TaskList filter={filter} search={search} />
     </div>
